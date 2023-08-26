@@ -56,11 +56,13 @@ function AppliquerPolitiqueSecurite
 
   foreach($poltiqueSecu in $PolitiquesSecu)
   {
-    Invoke-Item $poltiqueSecu -Confirm
+    reg import $politiqueSecu.FullName
   }
 }
 
 InstallerLogicielsWinget
+AppliquerPolitiqueSecurite
+
 if($InstallPronote)
 {
   InstallerPronote
