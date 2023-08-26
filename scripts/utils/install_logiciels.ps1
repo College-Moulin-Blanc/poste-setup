@@ -52,11 +52,9 @@ function AppliquerPolitiqueSecurite
   $DossierPolitiqueSecu = Join-Path -Path $PWD -ChildPath "assets"
   $PolitiquesSecu = Get-ChildItem -Path $DossierPolitiqueSecu
 
-  Write-Host $PolitiquesSecu
-
-  foreach($poltiqueSecu in $PolitiquesSecu)
+  foreach($file in $PolitiquesSecu)
   {
-    reg import $politiqueSecu.FullName
+    reg import $file.FullName
   }
 }
 
