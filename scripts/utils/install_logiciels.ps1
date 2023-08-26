@@ -30,18 +30,17 @@ function InstallerLogicielsWinget
 function InstallerPronote
 {
   $LienPronote = "https://tele3.index-education.com/telechargement/pn/v2023.0/exe/Install_PRNclient_FR_2023.0.2.1_win64.exe"
-  $Webclient = New-Object System.Net.WebClient
-
   $tempFolder = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "Pronote"
-  $tempFile = Join-Path -Path $tempFolder -ChildPath "PronoteInstaller.exe" 
+  $tempFile = Join-Path -Path $tempFolder -ChildPath "Pronote2023.exe"
 
-  try
+  if(-not (Test-Path $tempFolder))
   {
-    $Webclient.DownloadFile($LienPronote,$tempFile)
-  } catch
-  {
-    throw [System.Net.WebException]::new("Erreur du téléchargement : ", $_.Exception)
+    New-Item -ItemType Directory -Path $tempFolder
   }
+
+  Invoke-WebRequest $LienPronote -OutFile $tempFile
+
+  Start-Process -FilePath $tempFile -ArgumentList "-s -f1Pronote.iss -f2c:\result.log"  
 }
 
 InstallerPronote
