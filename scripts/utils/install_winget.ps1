@@ -54,7 +54,7 @@ function InstallWinget
     if(-not ((Test-Path -Path $dependency.SaveTo) -and $dependency.hash -eq $(Get-FileHash $dependency.SaveTo).Hash))
     {
       Write-Host @"
-        - Téléchargement : $($dependency.url)
+        - Telechargement : $($dependency.url)
 "@
 
       try
@@ -73,8 +73,10 @@ function InstallWinget
       {
         throw [System.Activities.VersionMismatchException]::new("Le hash de la dépendance ne correspond pas avec le fichier téléchargé")        
       }
-
-      Add-AppxPackage -Path "$($desktopAppInstaller.SaveTo)" -DependencyPath "$($vcLibsUwp.SaveTo),$($uiLibsUwp.SaveTo)"
+      
+      Add-AppxPackage -Path $vcLibsUwp.SaveTo
+      Add-AppxPackage -Path $uiLibsUwp.SaveTo
+      Add-AppxPackage -Path $desktopAppInstaller.SaveTo
     }
   }
 
