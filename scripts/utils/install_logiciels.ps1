@@ -1,3 +1,6 @@
+param ([switch]$InstallPronote)
+
+
 function InstallerLogicielsWinget
 {
   $listeLogiciels = @(
@@ -18,13 +21,14 @@ function InstallerLogicielsWinget
     "eTeks.SweetHome3D"
     "GeoGebra.Classic"
     "MITMediaLab.Scratch.3"
-    "makeblockteam.mBlock"
   )
 
   foreach($logiciel in $listeLogiciels)
   {
     winget install -e --id $logiciel --scope machine
   }
+
+  winget install -e --id makeblockteam.mBlock
 }
 
 function InstallerPronote
@@ -57,5 +61,7 @@ function AppliquerPolitiqueSecurite
 }
 
 InstallerLogicielsWinget
-InstallerPronote
-AppliquerPolitiqueSecurite
+if($InstallPronote)
+{
+  InstallerPronote
+}
