@@ -36,13 +36,13 @@ function InstallWinget
   $vcLibsUwp = @{
     url = "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx"
     hash = "9BFDE6CFCC530EF073AB4BC9C4817575F63BE1251DD75AAA58CB89299697A569"
-    SaveTo = $(Join-Path $tempFolder -ChildPath "Microsoft.VCLibs.x64.14.00.Desktop.appx")
+    SaveTo = $(Join-Path $env:LOCALAPPDATA -ChildPath "Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\bin\$($latestRelease.releaseTag)\Microsoft.VCLibs.x64.14.00.Desktop.appx")
   }
 
   $uiLibsUwp = @{
     url = "https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.7.3/Microsoft.UI.Xaml.2.7.x64.appx"
     hash = "8CE30D92ABEC6522BEB2544E7B716983F5CBA50751B580D89A36048BF4D90316"
-    SaveTo = $(Join-Path $tempFolder -ChildPath "Microsoft.UI.Xaml.2.7.x64.appx")
+    SaveTo = $(Join-Path $env:LOCALAPPDATA -ChildPath "Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\bin\$($latestRelease.releaseTag)\Microsoft.UI.Xaml.2.7.x64.appx")
   }
 
   $dependencies = @($desktopAppInstaller, $vcLibsUwp, $uiLibsUwp)
@@ -73,12 +73,12 @@ function InstallWinget
       {
         throw [System.Activities.VersionMismatchException]::new("Le hash de la dépendance ne correspond pas avec le fichier téléchargé")        
       }
-      
-      Add-AppxPackage -Path $vcLibsUwp.SaveTo
-      Add-AppxPackage -Path $uiLibsUwp.SaveTo
-      Add-AppxPackage -Path $desktopAppInstaller.SaveTo
     }
   }
+
+  Add-AppxPackage -Path $vcLibsUwp.SaveTo
+  Add-AppxPackage -Path $uiLibsUwp.SaveTo
+  Add-AppxPackage -Path $desktopAppInstaller.SaveTo
 
 }
 
