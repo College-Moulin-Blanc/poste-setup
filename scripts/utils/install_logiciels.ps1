@@ -40,7 +40,7 @@ function InstallerPronote
 
   Invoke-WebRequest $LienPronote -OutFile $tempFile
 
-  Start-Process -FilePath $tempFile -ArgumentList "-s -f1Pronote.iss -f2c:\result.log"  
+  Start-Process -FilePath $tempFile  
 }
 
 InstallerPronote
