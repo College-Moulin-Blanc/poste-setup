@@ -43,4 +43,19 @@ function InstallerPronote
   Start-Process -FilePath $tempFile  
 }
 
+function AppliquerPolitiqueSecurite
+{
+  $DossierPolitiqueSecu = Join-Path -Path $PWD -ChildPath "assets"
+  $PolitiquesSecu = Get-ChildItem -Path $DossierPolitiqueSecu
+
+  Write-Host $PolitiquesSecu
+
+  foreach($poltiqueSecu in $PolitiquesSecu)
+  {
+    Invoke-Item $poltiqueSecu -Confirm
+  }
+}
+
+InstallerLogicielsWinget
 InstallerPronote
+AppliquerPolitiqueSecurite
