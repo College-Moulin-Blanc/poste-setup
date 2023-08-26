@@ -82,4 +82,13 @@ function InstallWinget
 
 }
 
+function RemoveAppxPackage
+{
+  $whitelistedPackages = @(
+    "Microsoft.WindowsCalculator"
+  )
+
+  Get-AppxPackage | Where-Object {$_.Name -notin $whitelistedPackages} | Remove-AppxPackage
+}
+
 InstallWinget
