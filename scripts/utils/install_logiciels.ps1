@@ -13,6 +13,12 @@ function InstallerLogicielsWinget
     "Notepad++.Notepad++"
     "DuongDieuPhap.ImageGlass"
     "VeyonSolutions.Veyon"
+    "ArduinoSA.IDE.stable"
+    "Freeplane.Freeplane"
+    "eTeks.SweetHome3D"
+    "GeoGebra.Classic"
+    "MITMediaLab.Scratch.3"
+    "makeblockteam.mBlock"
   )
 
   foreach($logiciel in $listeLogiciels)
