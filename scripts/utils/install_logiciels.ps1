@@ -63,8 +63,4 @@ function AppliquerPolitiqueSecurite
 
 InstallerLogicielsWinget
 AppliquerPolitiqueSecurite
-
-if($InstallPronote)
-{
-  InstallerPronote
-}
+InstallerPronote
