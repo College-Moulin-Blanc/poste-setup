@@ -21,7 +21,7 @@ function UpdateEnvironmentVariables
 }
 
 $cred = Get-Credential -Credential winadmin
-New-PSDrive -Root "\\172.16.0.253\winadmin" -PSProvider "FileSystem" -Credential $cred
+New-PSDrive -Name "H" -Root "\\172.16.0.253\winadmin" -PSProvider "FileSystem" -Credential $cred
 
 $ListesPC = "\\172.16.0.253\winadmin\DOCUMENTS_TICE\Ressources\VeyonAdmin\Listes"
 

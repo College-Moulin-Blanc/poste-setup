@@ -26,9 +26,11 @@ function InstallerLogicielsWinget
 
   foreach($logiciel in $listeLogiciels)
   {
+    Write-Host "Installation de $logiciel"
     winget install -e --id $logiciel --scope machine | Out-Null
   }
 
+  Write-Host "Installation de makeblockteam.mBlock"
   winget install -e --id makeblockteam.mBlock | Out-Null
 }
 
