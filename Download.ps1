@@ -10,7 +10,7 @@ if(Test-Path $PosteSetupFolder)
 {
   Remove-Item -Path $PosteSetupFolder -Recurse -Force
 }
-New-Item $PosteSetupFolder -ItemType Directory
+New-Item $PosteSetupFolder -ItemType Directory | Out-Null
 
 try
 {

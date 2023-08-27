@@ -1,5 +1,6 @@
 param ([switch]$InstallPronote)
 
+$WorkFolder = Join-Path -Path $HOME -ChildPath "poste-setup" | Join-Path -ChildPath "poste-setup-main"
 
 function InstallerLogicielsWinget
 {
@@ -49,7 +50,7 @@ function InstallerPronote
 
 function AppliquerPolitiqueSecurite
 {
-  $DossierPolitiqueSecu = Join-Path -Path $PWD -ChildPath "assets"
+  $DossierPolitiqueSecu = Join-Path -Path $WorkFolder -ChildPath "assets"
   $PolitiquesSecu = Get-ChildItem -Path $DossierPolitiqueSecu
 
   foreach($file in $PolitiquesSecu)
