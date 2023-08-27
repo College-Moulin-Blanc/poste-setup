@@ -1,23 +1,10 @@
 function AddPath
 {
-  param([string] $pathToAdd)
+  param ([string] $pathToAdd)
 
-  $path = [Environment]::GetEnvironmentVariable("PATH","Machine") + [IO.Path]::PathSeparator + $pathToAdd
-  [Environment]::SetEnvironmentVariable("Path", $path, "Machine")
-}
-
-function UpdateEnvironmentVariables
-{
-  foreach($level in "Machine","User")
-  {
-    [Environment]::GetEnvironmentVariable($level).GetEnumerator() | % {
-      if($_.Name -match "Path$")
-      {
-        $_.Value = ($((Get-Content "Env:$($_.Name)") + ";$($_.Value)") -split ";" | Select -Unique) -join ";"
-      }
-      $_
-    } | Set-Content -Path { "Env:$($_.Name)" }
-  }
+  $regexAddPath = [regex]::Escape($pathToAdd)
+  $arrPath = $env:Path -split ";" | Where-Object {$_ -notmatch "^$regexAddPath\\?"}
+  $env:Path = ($arrPath + $pathToAdd) -join ";"
 }
 
 $cred = Get-Credential -Credential winadmin
@@ -68,5 +55,4 @@ switch($choix)
 }
 
 AddPath("$env:ProgramFiles\Veyon")
-UpdateEnvironmentVariables
 veyon-cli networkobjects import $(Join-Path -Path $ListesPC -ChildPath "$ClassrommToSetup.csv") "%location% %name% %host% %mac%"
