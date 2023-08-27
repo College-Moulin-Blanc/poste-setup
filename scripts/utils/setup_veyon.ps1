@@ -1,3 +1,28 @@
+function AddPath
+{
+  param([string] $pathToAdd)
+
+  $path = [Environment]::GetEnvironmentVariable("PATH","Machine") + [IO.Path]::PathSeparator + $pathToAdd
+  [Environment]::SetEnvironmentVariable("Path", $path, "Machine")
+}
+
+function UpdateEnvironmentVariables
+{
+  foreach($level in "Machine","User")
+  {
+    [Environment]::GetEnvironmentVariable($level).GetEnumerator() | % {
+      if($_.Name -match "Path$")
+      {
+        $_.Value = ($((Get-Content "Env:$($_.Name)") + ";$($_.Value)") -split ";" | Select -Unique) -join ";"
+      }
+      $_
+    } | Set-Content -Path { "Env:$($_.Name)" }
+  }
+}
+
+$cred = Get-Credential -Credential winadmin
+New-PSDrive -Root "\\172.16.0.253\winadmin" -PSProvider "FileSystem" -Credential $cred
+
 $ListesPC = "\\172.16.0.253\winadmin\DOCUMENTS_TICE\Ressources\VeyonAdmin\Listes"
 
 $ClassrommToSetup = ""
@@ -42,4 +67,6 @@ switch($choix)
   }
 }
 
+AddPath("$env:ProgramFiles\Veyon")
+UpdateEnvironmentVariables
 veyon-cli networkobjects import $(Join-Path -Path $ListesPC -ChildPath "$ClassrommToSetup.csv") "%location% %name% %host% %mac%"

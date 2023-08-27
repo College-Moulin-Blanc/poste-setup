@@ -26,10 +26,10 @@ function InstallerLogicielsWinget
 
   foreach($logiciel in $listeLogiciels)
   {
-    winget install -e --id $logiciel --scope machine
+    winget install -e --id $logiciel --scope machine | Out-Null
   }
 
-  winget install -e --id makeblockteam.mBlock
+  winget install -e --id makeblockteam.mBlock | Out-Null
 }
 
 function InstallerPronote
