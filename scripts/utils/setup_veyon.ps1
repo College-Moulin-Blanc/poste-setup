@@ -10,7 +10,7 @@ function AddPath
 $cred = Get-Credential -Credential winadmin
 New-PSDrive -Name "H" -Root "\\172.16.0.253\winadmin" -PSProvider "FileSystem" -Credential $cred
 
-$ListesPC = "\\172.16.0.253\winadmin\DOCUMENTS_TICE\Ressources\VeyonAdmin\Listes"
+$ListesPC = "\\172.16.0.253\winadmin\DOCUMENTS_TICE\Ressources\Veyon\Salles"
 
 $ClassrommToSetup = ""
 
@@ -55,4 +55,4 @@ switch($choix)
 }
 
 AddPath("$env:ProgramFiles\Veyon")
-veyon-cli networkobjects import $(Join-Path -Path $ListesPC -ChildPath "$ClassrommToSetup.csv") "%location% %name% %host% %mac%"
+veyon-cli networkobjects import $(Join-Path -Path $ListesPC -ChildPath "$ClassrommToSetup.csv") format "%location% %name% %host% %mac%"
