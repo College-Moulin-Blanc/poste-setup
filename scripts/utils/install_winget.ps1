@@ -91,4 +91,5 @@ function RemoveAppxPackage
   Get-AppxPackage | Where-Object {$_.Name -notin $whitelistedPackages} | Remove-AppxPackage
 }
 
+RemoveAppxPackage
 InstallWinget
