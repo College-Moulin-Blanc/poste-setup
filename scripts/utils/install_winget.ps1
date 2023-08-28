@@ -86,6 +86,7 @@ function RemoveAppxPackage
 {
   $whitelistedPackages = @(
     "Microsoft.WindowsCalculator"
+    "Microsoft.Windows.Photos"
   )
 
   Get-AppxPackage | Where-Object {$_.Name -notin $whitelistedPackages} | Remove-AppxPackage
