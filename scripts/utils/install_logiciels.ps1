@@ -24,6 +24,9 @@ function InstallerLogicielsWinget
     "MITMediaLab.Scratch.3"
     "GIMP.GIMP"
     "TrackerSoftware.PDF-XChangeEditor"
+
+    # Windows Calculator
+    "9WZDNCRFHVN5"
   )
 
   foreach($logiciel in $listeLogiciels)
