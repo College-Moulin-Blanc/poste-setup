@@ -22,6 +22,8 @@ function InstallerLogicielsWinget
     "eTeks.SweetHome3D"
     "GeoGebra.Classic"
     "MITMediaLab.Scratch.3"
+    "GIMP.GIMP"
+    "TrackerSoftware.PDF-XChangeEditor"
   )
 
   foreach($logiciel in $listeLogiciels)
