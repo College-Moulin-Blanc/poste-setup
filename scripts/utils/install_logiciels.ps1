@@ -36,7 +36,7 @@ function InstallerLogicielsWinget
 
 function InstallerPronote
 {
-  $LienPronote = "https://tele3.index-education.com/telechargement/pn/v2023.0/exe/Install_PRNclient_FR_2023.0.2.1_win64.exe"
+  $LienPronote = "https://tele7.index-education.com/telechargement/pn/v2023.0/exe/Install_PRNclient_FR_2023.0.2.2_win64.exe"
   $tempFolder = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "Pronote"
   $tempFile = Join-Path -Path $tempFolder -ChildPath "Pronote2023.exe"
 
